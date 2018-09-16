@@ -151,14 +151,14 @@
         mat4.identity(mvMatrix);
         // x, y, resize
         // geser segi 3
-        mat4.translate(mvMatrix, [0.0, 1.5, -7.0]);
+        mat4.translate(mvMatrix, [0.0, -1.5, -7.0]);
         gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
         gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, triangleVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
         setMatrixUniforms();
         gl.drawArrays(gl.TRIANGLES, 0, triangleVertexPositionBuffer.numItems);
 
         // geser kotak
-        mat4.translate(mvMatrix, [0.0, -3.0, 0.0]);
+        mat4.translate(mvMatrix, [0.0, 3.0, 0.0]);
         gl.bindBuffer(gl.ARRAY_BUFFER, squareVertexPositionBuffer);
         gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, squareVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
         setMatrixUniforms();
