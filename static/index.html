@@ -120,13 +120,27 @@
         triangleVertexPositionBuffer = gl.createBuffer();
         gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
         var vertices = [
-             0.0,  1.0,  0.0,
-            -1.0, -1.0,  0.0,
-             1.0, -1.0,  0.0
+            
+            -0.6, -1.0, 0.0,
+            -1.0, -1.0, 0.0,
+            0.0, 0.2, 0.0,
+            0.0, 1.0, 0.0,
+
+            0.0, 1.0, 0.0,
+            0.0, 0.2, 0.0,
+            1.0, -1.0, 0.0,
+            0.6, -1.0, 0.0,
+            
+            0.6, -1.0, 0.0,
+            0.6, -0.5, 0.0,
+            0.6, -0.5, 0.0,
+            -0.6, -0.5, 0.0,
+            0.6, -0.2, 0.0,
+            -0.6, -0.2, 0.0,
         ];
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
         triangleVertexPositionBuffer.itemSize = 3;
-        triangleVertexPositionBuffer.numItems = 3;
+        triangleVertexPositionBuffer.numItems = vertices.length / 3;
 
         squareVertexPositionBuffer = gl.createBuffer();
         gl.bindBuffer(gl.ARRAY_BUFFER, squareVertexPositionBuffer);
@@ -137,21 +151,21 @@
             1.0, 0.6, 0.0,
 
             1.0, 0.6, 0.0,
-            0.5, 0.6, 0.0,
-            -1.0, -1.0, 0.0,
-            -0.5, -1.0, 0.0,
+            0.35, 0.6, 0.0,
+            -1.0, -0.6, 0.0,
+            -0.35, -0.6, 0.0,
             1.0, 0.6, 0.0,
-            -0.5, -1.0, 0.0,
-            -1.0, -1.0, 0.0,
+            -0.35, -0.6, 0.0,
+            -1.0, -0.6, 0.0,
 
+            -1.0, -0.6, 0.0,
+            1.0, -0.6, 0.0,
             -1.0, -1.0, 0.0,
             1.0, -1.0, 0.0,
-            -1.0, -1.4, 0.0,
-            1.0, -1.4, 0.0,
         ];
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
         squareVertexPositionBuffer.itemSize = 3;
-        squareVertexPositionBuffer.numItems = 15;
+        squareVertexPositionBuffer.numItems = vertices.length / 3;
     }
 
 
@@ -168,7 +182,7 @@
         gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
         gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, triangleVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
         setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, triangleVertexPositionBuffer.numItems);
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, triangleVertexPositionBuffer.numItems);
 
         // geser kotak
         mat4.translate(mvMatrix, [0.0, 3.0, 0.0]);
